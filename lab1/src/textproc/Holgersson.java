@@ -13,27 +13,58 @@ public class Holgersson {
 			"öland", "östergötland" };
 
 	public static void main(String[] args) throws FileNotFoundException {
-
-		TextProcessor p1 = new SingleWordCounter("nils");
-		TextProcessor p2 = new SingleWordCounter("norge");
-		ArrayList<TextProcessor> list = new ArrayList<>();
-		list.add(p1);
-		list.add(p2);
-
+		
+//	SingleWordCounter solution to first exercises		
+//
+//		TextProcessor p1 = new SingleWordCounter("nils");
+//		TextProcessor p2 = new SingleWordCounter("norge");
+//		ArrayList<TextProcessor> list = new ArrayList<>();
+//		list.add(p1);
+//		list.add(p2);
+//
+//		Scanner s = new Scanner(new File("nilsholg.txt"));
+//		s.findWithinHorizon("\uFEFF", 1);
+//		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
+//
+//		while (s.hasNext()) {
+//			String word = s.next().toLowerCase();
+//			for (int i = 0; i < list.size(); i++) {
+//				list.get(i).process(word);
+//			}
+//		}
+//
+//		s.close();
+//		for (int i = 0; i < list.size(); i++) {
+//			list.get(i).report();
+//		}
+		
+		
+		TextProcessor p = new MultiWordCounter(REGIONS);
+		
 		Scanner s = new Scanner(new File("nilsholg.txt"));
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
 
 		while (s.hasNext()) {
 			String word = s.next().toLowerCase();
-			for (int i = 0; i < list.size(); i++) {
-				list.get(i).process(word);
-			}
+			p.process(word);
+			
+			
 		}
-
-		s.close();
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).report();
-		}
+		
+		
+		p.report();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }
