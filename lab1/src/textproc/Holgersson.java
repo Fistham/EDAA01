@@ -16,7 +16,6 @@ public class Holgersson {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		long t0 = System.nanoTime();
-		
 
 		Scanner s = new Scanner(new File("nilsholg.txt"));
 		s.findWithinHorizon("\uFEFF", 1);
@@ -57,7 +56,7 @@ public class Holgersson {
 
 		Scanner scan = new Scanner(new File("undantagsord.txt"));
 		Set<String> stopWords = new HashSet<String>();
-		
+
 		while (scan.hasNext()) {
 			stopWords.add(scan.next());
 		}
@@ -72,7 +71,7 @@ public class Holgersson {
 		s.close();
 
 		r.report();
-		
+
 		long t1 = System.nanoTime();
 		System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");
 
