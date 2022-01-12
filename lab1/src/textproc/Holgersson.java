@@ -13,8 +13,8 @@ public class Holgersson {
 			"öland", "östergötland" };
 
 	public static void main(String[] args) throws FileNotFoundException {
-		
-//	SingleWordCounter solution to first exercises		
+
+//		SingleWordCounter solution in main		
 //
 //		TextProcessor p1 = new SingleWordCounter("nils");
 //		TextProcessor p2 = new SingleWordCounter("norge");
@@ -37,10 +37,11 @@ public class Holgersson {
 //		for (int i = 0; i < list.size(); i++) {
 //			list.get(i).report();
 //		}
-		
-		
+
+//		MultiWordCounter solution in main
+
 		TextProcessor p = new MultiWordCounter(REGIONS);
-		
+
 		Scanner s = new Scanner(new File("nilsholg.txt"));
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
@@ -48,23 +49,10 @@ public class Holgersson {
 		while (s.hasNext()) {
 			String word = s.next().toLowerCase();
 			p.process(word);
-			
-			
+
 		}
-		
-		
+
 		p.report();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 }
