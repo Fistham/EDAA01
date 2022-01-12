@@ -3,7 +3,9 @@ package textproc;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Holgersson {
 
@@ -14,17 +16,17 @@ public class Holgersson {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-//		SingleWordCounter solution in main		
+		Scanner s = new Scanner(new File("nilsholg.txt"));
+		s.findWithinHorizon("\uFEFF", 1);
+		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
+
+//		SingleWordCounter exercise		
 //
 //		TextProcessor p1 = new SingleWordCounter("nils");
 //		TextProcessor p2 = new SingleWordCounter("norge");
 //		ArrayList<TextProcessor> list = new ArrayList<>();
 //		list.add(p1);
 //		list.add(p2);
-//
-//		Scanner s = new Scanner(new File("nilsholg.txt"));
-//		s.findWithinHorizon("\uFEFF", 1);
-//		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
 //
 //		while (s.hasNext()) {
 //			String word = s.next().toLowerCase();
@@ -33,24 +35,39 @@ public class Holgersson {
 //			}
 //		}
 //
-//		s.close();
 //		for (int i = 0; i < list.size(); i++) {
 //			list.get(i).report();
 //		}
 
-//		MultiWordCounter solution in main
+//		MultiWordCounter exercise
+//
+//		TextProcessor p = new MultiWordCounter(REGIONS);
+//
+//		while (s.hasNext()) {
+//			String word = s.next().toLowerCase();
+//			p.process(word);
+//
+//		}
+//
+//		p.report();
 
-		TextProcessor p = new MultiWordCounter(REGIONS);
+//		GeneralWordCounter
 
-		Scanner s = new Scanner(new File("nilsholg.txt"));
-		s.findWithinHorizon("\uFEFF", 1);
-		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
+		Scanner scan = new Scanner(new File("undantagsord.txt"));
+		Set<String> stopWords = new HashSet<String>();
+
+		while (scan.hasNext()) {
+			stopWords.add(scan.next());
+		}
+		scan.close();
+
+		TextProcessor p = new GeneralWordCounter(stopWords);
 
 		while (s.hasNext()) {
-			String word = s.next().toLowerCase();
-			p.process(word);
-
+			p.process(s.next().toLowerCase());
 		}
+
+		s.close();
 
 		p.report();
 
