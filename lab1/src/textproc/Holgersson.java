@@ -15,13 +15,15 @@ public class Holgersson {
 			"öland", "östergötland" };
 
 	public static void main(String[] args) throws FileNotFoundException {
+		long t0 = System.nanoTime();
+		
 
 		Scanner s = new Scanner(new File("nilsholg.txt"));
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
 
 //		SingleWordCounter exercise		
-//
+
 //		TextProcessor p1 = new SingleWordCounter("nils");
 //		TextProcessor p2 = new SingleWordCounter("norge");
 //		ArrayList<TextProcessor> list = new ArrayList<>();
@@ -40,36 +42,39 @@ public class Holgersson {
 //		}
 
 //		MultiWordCounter exercise
-//
-//		TextProcessor p = new MultiWordCounter(REGIONS);
+
+//		TextProcessor q = new MultiWordCounter(REGIONS);
 //
 //		while (s.hasNext()) {
 //			String word = s.next().toLowerCase();
-//			p.process(word);
+//			q.process(word);
 //
 //		}
 //
-//		p.report();
+//		q.report();
 
 //		GeneralWordCounter
 
 		Scanner scan = new Scanner(new File("undantagsord.txt"));
 		Set<String> stopWords = new HashSet<String>();
-
+		
 		while (scan.hasNext()) {
 			stopWords.add(scan.next());
 		}
 		scan.close();
 
-		TextProcessor p = new GeneralWordCounter(stopWords);
+		TextProcessor r = new GeneralWordCounter(stopWords);
 
 		while (s.hasNext()) {
-			p.process(s.next().toLowerCase());
+			r.process(s.next().toLowerCase());
 		}
 
 		s.close();
 
-		p.report();
+		r.report();
+		
+		long t1 = System.nanoTime();
+		System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");
 
 	}
 }
