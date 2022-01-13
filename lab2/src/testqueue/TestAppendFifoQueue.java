@@ -77,6 +77,7 @@ class TestAppendFifoQueue {
 		myIntQueue2.offer(4);
 		myIntQueue2.offer(5);
 		myIntQueue1.append(myIntQueue2);
+		
 
 		assertTrue("Wrong size of queue 1 after append", myIntQueue1.size() == 5);
 		assertTrue("Wrong size of queue 2 after append", myIntQueue2.size() == 0);
